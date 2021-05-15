@@ -541,7 +541,7 @@ html#schelkovo #adv-slider .slider-arrow {
   margin-top: -18px;
   z-index: 100;
   cursor: pointer
-}
+}`
 
 html#mozaika #adv-slider .slider-arrow span,
 html#schelkovo #adv-slider .slider-arrow span {
@@ -1388,21 +1388,20 @@ nav.popup-menu .close-menu-btn img {
   z-index: 1000
 }
 
-.slider-dots li {
-  float: left
+.slider-dots li, .gallery-dots .dot {
+  float: left;
+   width: 22px;
+   height: 4px;
+   background-color: #fff;
+   border: none;
+   border-radius: 2px;
+   color: transparent;
+   margin-right: 5px
 }
 
-.slider-dots li button {
-  width: 22px;
-  height: 4px;
-  background-color: #fff;
-  border: none;
-  border-radius: 2px;
-  color: transparent;
-  margin-right: 5px
-}
 
-.slider-dots li.slick-active button {
+.slider-dots li.slick-active button,
+.gallery-dots .dot.slick-active {
   background-color: #ffd11a
 }
 
@@ -1606,49 +1605,72 @@ nav.popup-menu .close-menu-btn img {
 }
 
 #gallery .gallery-slider {
+  position: relative;
   padding-left: 75px;
   padding-right: 75px;
   max-width: 900px;
   margin: 0 auto;
-  text-align: center
+  text-align: center;
+  z-index: 10;
 }
 
 #gallery .gallery-slider .slide {
+  display: none;
   margin: 0 auto !important;
-  width: 100%
+  width: 100%;
+  z-index: 999;
 }
+
+#gallery .gallery-slider .slide-active {
+  display: block;
+  margin: 0 auto !important;
+  width: 100%;
+  z-index: 10;
+}
+
 
 #gallery .gallery-slider .slider-arrow {
   position: absolute;
   top: 50%;
   margin-top: -18px;
   z-index: 100;
-  cursor: pointer
-}
-
-#gallery .gallery-slider .slider-arrow span {
+  cursor: pointer;
   display: block;
   width: 36px;
   height: 37px;
+  
   background-color: #f4c71b;
+  background-repeat: no-repeat;
+  
   border-radius: 50%;
   text-align: center;
-  padding-top: 11px
+  padding-top: 11px;
 }
 
 #gallery .gallery-slider .slider-arrow.prev {
-  left: 0
+  
+  left: 0;
+  background-image: url(../images/arrow-left.png) ;
+  background-position: 50% 50%
 }
 
 #gallery .gallery-slider .slider-arrow.next {
-  right: 0
+  
+  right: 0;
+   background-image: url(../images/arrow-right.png);
+   background-position: 50% 50%
 }
 
-#gallery .gallery-slider .slider-dots {
+#gallery .gallery-slider .gallery-dots {
+  position: absolute;
+  margin-top: -45px;
   left: 50%;
   margin-left: -65px;
-  bottom: 5%
+  bottom: 5%;
+  z-index: 1000;
 }
+
+ 
 
 #cards {
   padding-bottom: 4rem
