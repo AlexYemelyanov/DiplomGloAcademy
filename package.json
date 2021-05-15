@@ -1,0 +1,31 @@
+{
+  "name": "DiplomGloAcademy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
+    "babel-loader": "^8.2.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.prod.config.js",
+    "dev": "webpack serve --config webpack.dev.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexYemelyanov/DiplomGloAcademy.git"
+  },
+  "keywords": [],
+  "author": "Alexey Emelyanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexYemelyanov/DiplomGloAcademy/issues"
+  },
+  "homepage": "https://github.com/AlexYemelyanov/DiplomGloAcademy#readme"
+}
