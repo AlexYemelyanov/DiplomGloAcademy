@@ -1534,22 +1534,25 @@ nav.popup-menu .close-menu-btn img {
   margin-right: 5px
 }
 
+
 .services-slider {
+  
+  z-index: 10;
   display: flex;
   margin: 0 auto;
   padding-left: 15px;
-  padding-right: 15px
+  padding-right: 15px;
+  transition: .2s;
 }
 
 .services-slider .slide {
   text-align: center;
-  margin-right: 6px;
-  margin-left: 6px;
-  width: 210px
+  
+  width: 100%
 }
 
 .services-slider .slide img {
-  margin: 0 auto 19px
+  margin: 0 auto
 }
 
 .services-slider .slide h6 {
@@ -1575,25 +1578,28 @@ nav.popup-menu .close-menu-btn img {
   top: 75px;
   margin-top: -18px;
   z-index: 100;
-  cursor: pointer
-}
-
-.services-slider .slider-arrow span {
+  cursor: pointer;
   display: block;
   width: 36px;
   height: 37px;
   background-color: #f4c71b;
+  background-repeat: no-repeat;
   border-radius: 50%;
   text-align: center;
   padding-top: 11px
 }
 
+
 .services-slider .slider-arrow.prev {
-  left: 2px
+  left: 2px;
+  background-image: url(../images/arrow-left.png);
+  background-position: 50% 50%
 }
 
 .services-slider .slider-arrow.next {
-  right: 2px
+  right: 2px;
+  background-image: url(../images/arrow-right.png);
+  background-position: 50% 50%
 }
 
 #gallery {

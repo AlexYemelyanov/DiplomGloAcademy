@@ -23,7 +23,8 @@ class SliderCarousel {
     this.options = {
       position,
       infinity,
-      widthSlide: Math.floor(100 / this.slidesToShow),
+      widthSlide: Math.round(100 / this.slidesToShow),
+      //widthSlider: Math.round(widthSlide * 5),
     };
     this.responsive = responsive;
 
@@ -48,9 +49,12 @@ class SliderCarousel {
 
   addGloClass() {
     this.main.classList.add('glo-slider');
-    this.wrap.classList.add('glo-slider__wrap');
+    this.wrap.classList.add('services-slider');
+    console.log(this.wrap.style)
     for (const item of this.slides) {
-      item.classList.add('glo-slider__item');
+
+      item.classList.add('slide-service');
+      console.log(item.style);
     }
   }
 
@@ -62,21 +66,54 @@ class SliderCarousel {
     }
 
     style.textContent = `
-      .glo-sleder{
-        overflow: hidden !important;
+      .glo-slider{
+      position: relative;
+       overflow: hidden !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        z-index:10;
       }
-      .glo-slider__wrap {
-        display: flex !important;
-        transition: transform 0.5s !important;
-        will-change: transform !important;
-      }
-
-      .glo-slider__item{
-        display: flex !important;
+      .services-slider {
+        position: relative;
+        padding-right: 0!important;
+        padding-left: 0!important;
+        
+        transition: transform 0.2s;
+        will-change: transform
+        }
+      .slide-service{
         align-items: centr;
         justify-content: centr;
         flex: 0 0 ${this.options.widthSlide}% !important;
-        margin: auto 0 !important;
+        padding-right: 0!important;
+        padding-left: 0!important;
+        margin-left:  0 !important;
+        margin-right:  0 !important;
+      }
+       .slide-service img{
+         
+        margin-left:  0 !important;
+        margin-right:  0 !important;
+      }
+
+      .slide-service h6{
+  
+        color: #2e2e2e;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 8px
+      }
+
+      .slide-service p{
+   
+        color: #616161;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 18px;
+        padding-left: 10px;
+        padding-right: 10px;
+        max-width: 200px;
+        margin: 0 auto
       }
     `;
     document.head.appendChild(style);
@@ -91,7 +128,7 @@ class SliderCarousel {
   prevSlider() {
     if (this.options.infinity || this.options.position > 0) {
       --this.options.position;
-      if (this.options, position = this.slides.length - this.slidesToShow)
+      if (this.options.position = this.slides.length - this.slidesToShow)
         this.wrap.style.transform = `translateX(-${this.options.position * this.options.widthSlide}%)`;
     }
 
@@ -112,8 +149,8 @@ class SliderCarousel {
     this.prev = document.createElement('button');
     this.next = document.createElement('button');
 
-    this.prev.className = 'glo-slider__prev';
-    this.next.className = 'glo-slider__next';
+    this.prev.className = 'service-arrow prevs';
+    this.next.className = 'service-arrow nex';
 
     this.main.appendChild(this.prev);
     this.main.appendChild(this.next);
@@ -121,28 +158,36 @@ class SliderCarousel {
     const style = document.createElement('style');
 
     style.textContent = `
-    .glo-slider__prev,
-    .glo-slider__next{
-      margin: 0 10px;
-      border: 20px solid transparent;
-      background: transparent;
+       .service-arrow {
+          position: absolute;
+          top: 75px;
+          margin-top: -18px;
+          z-index: 100;
+          cursor: pointer;
+          display: block;
+          width: 36px;
+          height: 37px;
+          background-color: #f4c71b;
+          background-repeat: no-repeat;
+          border-radius: 50%;
+          text-align: center;
+          padding-top: 11px
+        }
 
-    }
-    .glo-slider__next {
-      border-left-color: #19b5fe;
-    }
 
-    .glo-slider__prev {
-        border-right-color: #19b5fe;
-    }
+        .prevs {
+          left: 0px;
+          background-image: url(../images/arrow-left.png);
+          background-position: 50% 50%
+          
+        }
 
-    .glo-slider__prev:hover,
-    .glo-slider__next:hover,
-    .glo-slider__prev:focus,
-    .glo-slider__next:focus{
-      background: transparent;
-      outline: transparent
-    }
+        .nex {
+          right: 0px;
+          background-image: url(../images/arrow-right.png);
+          background-position: 50% 50%
+          
+        }
     `;
     document.head.appendChild(style);
   }
