@@ -50,11 +50,11 @@ class SliderCarousel {
   addGloClass() {
     this.main.classList.add('glo-slider');
     this.wrap.classList.add('services-slider');
-    console.log(this.wrap.style)
+
     for (const item of this.slides) {
 
       item.classList.add('slide-service');
-      console.log(item.style);
+
     }
   }
 
