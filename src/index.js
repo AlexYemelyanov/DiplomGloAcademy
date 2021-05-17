@@ -7,6 +7,7 @@ import arrow from './modules/arrow';
 import gallerySlider from './modules/gallerySlider';
 import popup from './modules/popups';
 import gift from './modules/gift';
+import calculator from './modules/calculator';
 
 
 
@@ -17,3 +18,4 @@ gift();
 popup();
 arrow();
 gallerySlider();
+calculator();
