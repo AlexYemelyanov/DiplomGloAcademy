@@ -26,8 +26,8 @@ const burgMenu = () => {
           closeMenu();
         }
         if (closeMenuBtn === event.target)
-          console.log(closeMenuBtn)
-        closeMenu();
+
+          closeMenu();
       })
 
       document.addEventListener('scroll', () => {

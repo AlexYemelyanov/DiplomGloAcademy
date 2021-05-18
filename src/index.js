@@ -8,7 +8,8 @@ import gallerySlider from './modules/gallerySlider';
 import popup from './modules/popups';
 import gift from './modules/gift';
 import calculator from './modules/calculator';
-
+import validation from './modules/validation';
+import sendForm from './modules/sendForm';
 
 
 burgMenu();
@@ -19,3 +20,5 @@ popup();
 arrow();
 gallerySlider();
 calculator();
+validation();
+sendForm();
