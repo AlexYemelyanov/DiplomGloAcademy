@@ -2,6 +2,7 @@
 
 const chooseClub = () => {
   const headMain = document.querySelector('.head-main'),
+    body = document.querySelector('body'),
     club = headMain.querySelector('.clubs-list'),
     clubSelect = club.querySelector('p'),
     clubList = club.querySelector('ul');
@@ -11,6 +12,15 @@ const chooseClub = () => {
       clubList.style.display = 'block';
     }
 
+  })
+  body.addEventListener('click', (e) => {
+
+    let target = e.target;
+    target = target.closest('.head-main');
+    if (!target) {
+
+      clubList.style.display = 'none';
+    }
   })
   headMain.addEventListener('click', (e) => {
 

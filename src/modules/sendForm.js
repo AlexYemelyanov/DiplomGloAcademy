@@ -14,8 +14,8 @@ const sendForm = () => {
     cardTypes = cardOrder.querySelector('.cards-types');
   if (cardTypes) {
 
-    const cardTypesInputs = cardTypes.querySelectorAll('input'),
-      cardCheck = document.getElementById('card_check');
+
+    const cardCheck = document.getElementById('card_check');
     const elementFormCard = [];
     cardOrder.addEventListener('submit', (e) => {
       e.preventDefault();

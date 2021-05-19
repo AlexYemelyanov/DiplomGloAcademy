@@ -135,7 +135,7 @@ const validation = () => {
     function valid(event) {
 
       elementFormCard.forEach((elem) => {
-        console.log(elem)
+
         if (!elem.value) {
           event.preventDefault();
         }
