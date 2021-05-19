@@ -21,7 +21,7 @@ const validation = () => {
       }
     };
     form2.addEventListener('submit', valid);
-    console.log(elementForm2)
+
 
     function valid(event) {
 
@@ -76,7 +76,7 @@ const validation = () => {
 
     };
     form1.addEventListener('input', (e) => {
-      console.log(e.target)
+
       formName.value = formName.value.replace(/[^А-Яа-яЁё\s]/ig, '');
       formPhone.value = formPhone.value.replace(/[^\+\d]/, '')
 

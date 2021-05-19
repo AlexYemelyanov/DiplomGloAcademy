@@ -10,9 +10,15 @@ const sendForm = () => {
     thanks = document.getElementById('thanks'),
     thanksFormCOntent = thanks.querySelector('.form-content'),
     cardOrder = document.getElementById('card_order'),
-    bannerForm = document.getElementById('banner-form');
-  const cardTypes = document.getElementById('card_order').querySelector('.cards-types');
-  const cardTypesInputs = cardTypes.querySelectorAll('input');
+    bannerForm = document.getElementById('banner-form'),
+    cardTypes = cardOrder.querySelector('.cards-types');
+  if (cardTypes) {
+
+    const cardTypesInputs = cardTypes.querySelectorAll('input');
+
+  }
+
+
 
 
 
