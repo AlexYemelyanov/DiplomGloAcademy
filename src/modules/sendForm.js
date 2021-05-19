@@ -16,6 +16,56 @@ const sendForm = () => {
 
     const cardTypesInputs = cardTypes.querySelectorAll('input');
 
+    cardOrder.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(cardOrder);
+
+      let body = {};
+
+      formData.forEach((val, key) => {
+        body[key] = val;
+      });
+
+      postData(body)
+        .then((response) => {
+          if (response.status !== 200) {
+            throw new Error('Status network is not 200!')
+          }
+          thanks.style.display = 'flex';
+          cardTypesInputs.forEach((elem) => {
+            elem.checked = false;
+          })
+
+        })
+        .catch((error) => {
+          thanks.style.display = 'flex';
+          thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
+                <p>Ваша заявка не отправлена. <br> Утрачена связь с сервером!.</p>
+                <button class="btn close-btn">OK</button>`;
+          const btn = thanksFormCOntent.querySelector('.close-btn');
+
+          btn.addEventListener('click', () => {
+            thanks.style.display = 'none';
+          })
+          console.log(error);
+
+          cardTypesInputs.forEach((elem) => {
+            elem.checked = false;
+          })
+          console.log(error);
+        })
+        .finally(() => {
+          cardOrder.reset();
+          cardTypesInputs.forEach((elem) => {
+            elem.checked = false;
+          })
+          setTimeout(() => {
+            thanks.style.display = 'none';
+          }, 3000);
+        });
+    });
+
   }
 
 
@@ -47,6 +97,11 @@ const sendForm = () => {
         thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
                 <p>Ваша заявка не отправлена. <br> Утрачена связь с сервером!.</p>
                 <button class="btn close-btn">OK</button>`;
+        const btn = thanksFormCOntent.querySelector('.close-btn');
+
+        btn.addEventListener('click', () => {
+          thanks.style.display = 'none';
+        })
         console.log(error);
       })
       .finally(() => {
@@ -82,6 +137,11 @@ const sendForm = () => {
         thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
                 <p>Ваша заявка не отправлена. <br> Утрачена связь с сервером!.</p>
                 <button class="btn close-btn">OK</button>`;
+        const btn = thanksFormCOntent.querySelector('.close-btn');
+
+        btn.addEventListener('click', () => {
+          thanks.style.display = 'none';
+        })
         console.log(error);
       })
       .finally(() => {
@@ -118,7 +178,11 @@ const sendForm = () => {
         thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
                 <p>Ваша заявка не отправлена. <br> Утрачена связь с сервером!.</p>
                 <button class="btn close-btn">OK</button>`;
+        const btn = thanksFormCOntent.querySelector('.close-btn');
 
+        btn.addEventListener('click', () => {
+          thanks.style.display = 'none';
+        })
         console.log(error);
       })
       .finally(() => {
@@ -156,16 +220,17 @@ const sendForm = () => {
         thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
                 <p>Ваша заявка не отправлена. <br> Утрачена связь с сервером!.</p>
                 <button class="btn close-btn">OK</button>`;
-        cardTypesInputs.forEach((elem) => {
-          elem.checked = false;
+        const btn = thanksFormCOntent.querySelector('.close-btn');
+
+        btn.addEventListener('click', () => {
+          thanks.style.display = 'none';
         })
+
         console.log(error);
       })
       .finally(() => {
         cardOrder.reset();
-        cardTypesInputs.forEach((elem) => {
-          elem.checked = false;
-        })
+
         setTimeout(() => {
           thanks.style.display = 'none';
         }, 3000);
@@ -197,7 +262,11 @@ const sendForm = () => {
         thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
                 <p>Ваша заявка не отправлена. <br> Утрачена связь с сервером!.</p>
                 <button class="btn close-btn">OK</button>`;
+        const btn = thanksFormCOntent.querySelector('.close-btn');
 
+        btn.addEventListener('click', () => {
+          thanks.style.display = 'none';
+        })
         console.log(error);
       })
       .finally(() => {

@@ -186,17 +186,19 @@ const validation = () => {
       elementFooterForm.push(elem);
     }
   };
+  console.log(elementFooterForm)
 
   function valid1(event) {
-
+    console.log(event)
     elementFooterForm.forEach((elem) => {
-
-      if (!elem.value) {
-        event.preventDefault();
-      }
-      if (!elem.checked) {
-        event.preventDefault();
-      }
+      event.preventDefault();
+      console.log(elem)
+      //if (!elem.value) {
+      //  event.preventDefault();
+      //}
+      //if (!elem.checked) {
+      //  event.preventDefault();
+      //}
     })
   };
 
