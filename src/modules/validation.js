@@ -27,9 +27,7 @@ const validation = () => {
         if (!elem.value) {
           event.preventDefault();
         }
-        if (!elem.checked) {
-          event.preventDefault();
-        }
+
       })
     };
 
@@ -135,7 +133,7 @@ const validation = () => {
     };
 
     function valid(event) {
-      console.log(event)
+
       elementFormCard.forEach((elem) => {
         console.log(elem)
         if (!elem.value) {
