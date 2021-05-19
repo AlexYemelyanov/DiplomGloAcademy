@@ -10,7 +10,7 @@ const menuButton = document.querySelector('.menu-button'),
 const burgMenu = () => {
 
   window.addEventListener('resize', (e) => {
-    console.log(e.target.screen.width)
+
     if (e.target.screen.width < 767) {
       const handlerMenu = () => {
         popupMenu.style.display = 'flex';

@@ -14,227 +14,298 @@ const sendForm = () => {
     cardTypes = cardOrder.querySelector('.cards-types');
   if (cardTypes) {
 
-    const cardTypesInputs = cardTypes.querySelectorAll('input');
-
+    const cardTypesInputs = cardTypes.querySelectorAll('input'),
+      cardCheck = document.getElementById('card_check');
+    const elementFormCard = [];
     cardOrder.addEventListener('submit', (e) => {
       e.preventDefault();
+      for (const elem of cardOrder.elements) {
+        if (elem.tagName.toLowerCase() !== 'button' &&
+          elem.type !== 'button') {
+          elementFormCard.push(elem);
+        }
+      };
+      elementFormCard.forEach((elem) => {
+        if (elem === cardCheck) {
+          if (elem.checked === true) {
+            const formData = new FormData(cardOrder);
 
-      const formData = new FormData(cardOrder);
+            let body = {};
 
-      let body = {};
+            formData.forEach((val, key) => {
+              body[key] = val;
+            });
 
-      formData.forEach((val, key) => {
-        body[key] = val;
-      });
+            postData(body)
+              .then((response) => {
+                if (response.status !== 200) {
+                  throw new Error('Status network is not 200!')
+                }
+                thanks.style.display = 'flex';
 
-      postData(body)
-        .then((response) => {
-          if (response.status !== 200) {
-            throw new Error('Status network is not 200!')
-          }
-          thanks.style.display = 'flex';
-          cardTypesInputs.forEach((elem) => {
-            elem.checked = false;
-          })
-
-        })
-        .catch((error) => {
-          thanks.style.display = 'flex';
-          thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
+              })
+              .catch((error) => {
+                thanks.style.display = 'flex';
+                thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
                 <p>Ваша заявка не отправлена. <br> Утрачена связь с сервером!.</p>
                 <button class="btn close-btn">OK</button>`;
-          const btn = thanksFormCOntent.querySelector('.close-btn');
+                const btn = thanksFormCOntent.querySelector('.close-btn');
 
-          btn.addEventListener('click', () => {
-            thanks.style.display = 'none';
-          })
-          console.log(error);
+                btn.addEventListener('click', () => {
+                  thanks.style.display = 'none';
+                })
 
-          cardTypesInputs.forEach((elem) => {
-            elem.checked = false;
-          })
-          console.log(error);
-        })
-        .finally(() => {
-          cardOrder.reset();
-          cardTypesInputs.forEach((elem) => {
-            elem.checked = false;
-          })
-          setTimeout(() => {
-            thanks.style.display = 'none';
-          }, 3000);
-        });
+                console.log(error);
+              })
+              .finally(() => {
+                cardOrder.reset();
+
+                setTimeout(() => {
+                  thanks.style.display = 'none';
+                }, 3000);
+              });
+          } else {
+            alert('Пожалуйста, дайте согласие на обработку личных данных');
+          }
+        }
+
+      });
+
     });
-
   }
 
 
 
 
 
-
+  ///Банер
+  const elementFormBanner = [];
   bannerForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const formData = new FormData(bannerForm);
+    for (const elem of bannerForm.elements) {
+      if (elem.tagName.toLowerCase() !== 'button' &&
+        elem.type !== 'button') {
+        elementFormBanner.push(elem);
+      }
+    };
+    elementFormBanner.forEach((elem) => {
+      if (elem === check1) {
+        if (elem.checked === true) {
+          const formData = new FormData(bannerForm);
 
-    let body = {};
+          let body = {};
 
-    formData.forEach((val, key) => {
-      body[key] = val;
-    });
+          formData.forEach((val, key) => {
+            body[key] = val;
+          });
 
-    postData(body)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Status network is not 200!')
-        }
-        thanks.style.display = 'flex';
+          postData(body)
+            .then((response) => {
+              if (response.status !== 200) {
+                throw new Error('Status network is not 200!')
+              }
+              thanks.style.display = 'flex';
 
-      })
-      .catch((error) => {
-        thanks.style.display = 'flex';
-        thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
+            })
+            .catch((error) => {
+              thanks.style.display = 'flex';
+              thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
                 <p>Ваша заявка не отправлена. <br> Утрачена связь с сервером!.</p>
                 <button class="btn close-btn">OK</button>`;
-        const btn = thanksFormCOntent.querySelector('.close-btn');
+              const btn = thanksFormCOntent.querySelector('.close-btn');
 
-        btn.addEventListener('click', () => {
-          thanks.style.display = 'none';
-        })
-        console.log(error);
-      })
-      .finally(() => {
-        bannerForm.reset();
-        setTimeout(() => {
-          thanks.style.display = 'none';
-        }, 3000);
-      });
+              btn.addEventListener('click', () => {
+                thanks.style.display = 'none';
+              })
+              console.log(error);
+            })
+            .finally(() => {
+              bannerForm.reset();
+              setTimeout(() => {
+                thanks.style.display = 'none';
+              }, 3000);
+            });
+        } else {
+          alert('Пожалуйста, дайте согласие на обработку личных данных');
+        }
+
+      }
+    })
+
   });
 
+
+  const elementForm2 = [];
   form2.addEventListener('submit', (e) => {
+    const check2 = document.getElementById('check2');
+
     e.preventDefault();
+    for (const elem of form2.elements) {
+      if (elem.tagName.toLowerCase() !== 'button' &&
+        elem.type !== 'button') {
+        elementForm2.push(elem);
+      }
+    };
+    elementForm2.forEach((elem) => {
+      if (elem === check2) {
+        if (elem.checked === true) {
+          const formData = new FormData(form2);
 
-    const formData = new FormData(form2);
+          let body = {};
 
-    let body = {};
+          formData.forEach((val, key) => {
+            body[key] = val;
+          });
 
-    formData.forEach((val, key) => {
-      body[key] = val;
-    });
+          postData(body)
+            .then((response) => {
+              if (response.status !== 200) {
+                throw new Error('Status network is not 200!')
+              }
+              thanks.style.display = 'flex';
+              freeVisit.style.display = 'none';
 
-    postData(body)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Status network is not 200!')
-        }
-        thanks.style.display = 'flex';
-        freeVisit.style.display = 'none';
-
-      })
-      .catch((error) => {
-        thanks.style.display = 'flex';
-        thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
+            })
+            .catch((error) => {
+              thanks.style.display = 'flex';
+              thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
                 <p>Ваша заявка не отправлена. <br> Утрачена связь с сервером!.</p>
                 <button class="btn close-btn">OK</button>`;
-        const btn = thanksFormCOntent.querySelector('.close-btn');
+              const btn = thanksFormCOntent.querySelector('.close-btn');
 
-        btn.addEventListener('click', () => {
-          thanks.style.display = 'none';
-        })
-        console.log(error);
-      })
-      .finally(() => {
-        form2.reset();
-        setTimeout(() => {
-          thanks.style.display = 'none';
-        }, 3000);
-      });
+              btn.addEventListener('click', () => {
+                thanks.style.display = 'none';
+              })
+              console.log(error);
+            })
+            .finally(() => {
+              form2.reset();
+              setTimeout(() => {
+                thanks.style.display = 'none';
+              }, 3000);
+            });
+        } else {
+          alert('Пожалуйста, дайте согласие на обработку личных данных');
+        }
+      }
+    });
   });
 
+
+  const elementForm1 = [];
   form1.addEventListener('submit', (e) => {
+    const check = document.getElementById('check1');
     e.preventDefault();
+    for (const elem of form1.elements) {
+      if (elem.tagName.toLowerCase() !== 'button' &&
+        elem.type !== 'button') {
+        elementForm1.push(elem);
+      }
+    };
+    elementForm1.forEach((elem) => {
+      if (elem === check) {
+        if (elem.checked === true) {
+          const formData = new FormData(form1);
 
-    const formData = new FormData(form1);
+          let body = {};
 
-    let body = {};
+          formData.forEach((val, key) => {
+            body[key] = val;
+          });
 
-    formData.forEach((val, key) => {
-      body[key] = val;
-    });
+          postData(body)
+            .then((response) => {
+              if (response.status !== 200) {
+                throw new Error('Status network is not 200!')
+              }
+              thanks.style.display = 'flex';
+              callback.style.display = 'none';
 
-    postData(body)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Status network is not 200!')
-        }
-        thanks.style.display = 'flex';
-        callback.style.display = 'none';
-
-      })
-      .catch((error) => {
-        thanks.style.display = 'flex';
-        callback.style.display = 'none';
-        thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
+            })
+            .catch((error) => {
+              thanks.style.display = 'flex';
+              callback.style.display = 'none';
+              thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
                 <p>Ваша заявка не отправлена. <br> Утрачена связь с сервером!.</p>
                 <button class="btn close-btn">OK</button>`;
-        const btn = thanksFormCOntent.querySelector('.close-btn');
+              const btn = thanksFormCOntent.querySelector('.close-btn');
 
-        btn.addEventListener('click', () => {
-          thanks.style.display = 'none';
-        })
-        console.log(error);
-      })
-      .finally(() => {
-        form1.reset();
-        setTimeout(() => {
-          thanks.style.display = 'none';
-        }, 3000);
-      });
+              btn.addEventListener('click', () => {
+                thanks.style.display = 'none';
+              })
+              console.log(error);
+            })
+            .finally(() => {
+              form1.reset();
+              setTimeout(() => {
+                thanks.style.display = 'none';
+              }, 3000);
+            });
+        } else {
+          alert('Пожалуйста, дайте согласие на обработку личных данных');
+        }
+      }
+    })
+
   });
 
+  const elementFormCard = [];
   cardOrder.addEventListener('submit', (e) => {
+    const cardCheck = document.getElementById('card_check');
     e.preventDefault();
+    for (const elem of cardOrder.elements) {
+      if (elem.tagName.toLowerCase() !== 'button' &&
+        elem.type !== 'button') {
+        elementFormCard.push(elem);
+      }
+    };
+    elementFormCard.forEach((elem) => {
+      if (elem === cardCheck) {
+        if (elem.checked === true) {
+          const formData = new FormData(cardOrder);
 
-    const formData = new FormData(cardOrder);
+          let body = {};
 
-    let body = {};
+          formData.forEach((val, key) => {
+            body[key] = val;
+          });
 
-    formData.forEach((val, key) => {
-      body[key] = val;
-    });
+          postData(body)
+            .then((response) => {
+              if (response.status !== 200) {
+                throw new Error('Status network is not 200!')
+              }
+              thanks.style.display = 'flex';
 
-    postData(body)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Status network is not 200!')
-        }
-        thanks.style.display = 'flex';
-        cardTypesInputs.forEach((elem) => {
-          elem.checked = false;
-        })
-
-      })
-      .catch((error) => {
-        thanks.style.display = 'flex';
-        thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
+            })
+            .catch((error) => {
+              thanks.style.display = 'flex';
+              thanksFormCOntent.innerHTML = `<h4>Извините!</h4>
                 <p>Ваша заявка не отправлена. <br> Утрачена связь с сервером!.</p>
                 <button class="btn close-btn">OK</button>`;
-        const btn = thanksFormCOntent.querySelector('.close-btn');
+              const btn = thanksFormCOntent.querySelector('.close-btn');
 
-        btn.addEventListener('click', () => {
-          thanks.style.display = 'none';
-        })
+              btn.addEventListener('click', () => {
+                thanks.style.display = 'none';
+              })
 
-        console.log(error);
-      })
-      .finally(() => {
-        cardOrder.reset();
+              console.log(error);
+            })
+            .finally(() => {
+              cardOrder.reset();
 
-        setTimeout(() => {
-          thanks.style.display = 'none';
-        }, 3000);
-      });
+              setTimeout(() => {
+                thanks.style.display = 'none';
+              }, 3000);
+            });
+        } else {
+          alert('Пожалуйста, дайте согласие на обработку личных данных');
+        }
+      }
+
+    });
+
   });
 
   footerForm.addEventListener('submit', (e) => {

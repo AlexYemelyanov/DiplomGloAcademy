@@ -1,17 +1,51 @@
 'use strict';
 
 const validation = () => {
-  const footerLetoMozaika = document.getElementById('footer_leto_mozaika'),
-    footerLetoSchelkovo = document.getElementById('footer_leto_schelkovo'),
-    footerFormPhone = document.getElementById('callback_footer_form-phone'),
-    footerForm = document.getElementById('footer_form');
 
+  const footerForm = document.getElementById('footer_form');
+  if (footerForm) {
+    const footerLetoMozaika = document.getElementById('footer_leto_mozaika'),
+      footerLetoSchelkovo = document.getElementById('footer_leto_schelkovo'),
+      footerFormPhone = document.getElementById('callback_footer_form-phone');
+
+
+    footerForm.addEventListener('submit', valid1);
+
+    const elementFooterForm = [];
+
+    for (const elem of footerForm.elements) {
+      if (elem.tagName.toLowerCase() !== 'button' &&
+        elem.type !== 'button') {
+        elementFooterForm.push(elem);
+      }
+    };
+
+
+    function valid1(event) {
+
+      elementFooterForm.forEach((elem) => {
+        if (!elem.value) {
+          event.preventDefault();
+        }
+        if (!elem.checked) {
+          event.preventDefault();
+        }
+      })
+    };
+
+
+    footerForm.addEventListener('input', (e) => {
+
+      footerFormPhone.value = footerFormPhone.value.replace(/[^\+()\d]/ig, '')
+
+    })
+  }
 
   const form2 = document.getElementById('form2');
   if (form2) {
     const form2Name = document.getElementById('callback_form2-name'),
-      form2Phone = document.getElementById('callback_form2-phone'),
-      check2 = document.getElementById('check2');
+      form2Phone = document.getElementById('callback_form2-phone');
+
     const elementForm2 = [];
 
     for (const elem of form2.elements) {
@@ -30,13 +64,11 @@ const validation = () => {
         if (!elem.value) {
           event.preventDefault();
         }
-        if (!elem.checked) {
-          event.preventDefault();
-        }
       })
 
-
     };
+
+
     form2.addEventListener('input', (e) => {
 
       form2Name.value = form2Name.value.replace(/[^А-Яа-яЁё\s]/ig, '');
@@ -90,7 +122,8 @@ const validation = () => {
       cardLetoSchelkovo = document.getElementById('card_leto_schelkovo'),
       nameClubOrder = document.getElementById('name-club_order'),
       callbackFormPhone = document.getElementById('callback_form-phone'),
-      cardCheck = document.getElementById('card_check');
+      promo = document.getElementById('promo');
+
 
     const elementFormCard = [];
 
@@ -102,14 +135,15 @@ const validation = () => {
     };
 
     function valid(event) {
-
+      console.log(event)
       elementFormCard.forEach((elem) => {
-
+        console.log(elem)
         if (!elem.value) {
           event.preventDefault();
         }
-        if (!elem.checked) {
-          event.preventDefault();
+
+        if (elem === promo) {
+          return;
         }
       })
     }
@@ -138,10 +172,7 @@ const validation = () => {
 
 
     function valid(event) {
-      if (check1.checked === false) {
-        event.preventDefault();
 
-      }
       elementFormBanner.forEach((elem) => {
 
         if (elem === phone) {
@@ -154,14 +185,6 @@ const validation = () => {
             event.preventDefault();
           }
         }
-        if (elem === check1) {
-
-          if (elem.checked === false) {
-            event.preventDefault();
-            alert('Pls checked Me')
-          }
-        }
-
       })
     }
     bannerForm.addEventListener('input', (e) => {
@@ -173,40 +196,5 @@ const validation = () => {
 
   }
 
-
-
-
-  footerForm.addEventListener('submit', valid1);
-
-  const elementFooterForm = [];
-
-  for (const elem of footerForm.elements) {
-    if (elem.tagName.toLowerCase() !== 'button' &&
-      elem.type !== 'button') {
-      elementFooterForm.push(elem);
-    }
-  };
-  console.log(elementFooterForm)
-
-  function valid1(event) {
-    console.log(event)
-    elementFooterForm.forEach((elem) => {
-      event.preventDefault();
-      console.log(elem)
-      //if (!elem.value) {
-      //  event.preventDefault();
-      //}
-      //if (!elem.checked) {
-      //  event.preventDefault();
-      //}
-    })
-  };
-
-
-  footerForm.addEventListener('input', (e) => {
-
-    footerFormPhone.value = footerFormPhone.value.replace(/[^\+()\d]/ig, '')
-
-  })
 }
 export default validation;
